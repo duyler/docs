@@ -26,4 +26,6 @@ make up
 ```
 По-умолчанию, будет создано и запущено приложение для работы с веб. Оно будет доступно по адресу [http://localhost/](http://localhost/)
 
+### Общая схема работы
 
+<img src="https://duyler.com/assets/img/action-bus.svg" width="100%">
