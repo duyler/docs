@@ -4,7 +4,7 @@ The event bus implements cooperative multitasking between the actions performed 
 
 ### General scheme of work
 
-<img src="/img/event-bus.svg" width="100%" alt="">
+<img src="https://github.com/duyler/docs/blob/main/img/event-bus.svg" width="100%" alt="">
 
 
 ### Types of states
@@ -72,6 +72,6 @@ Each state can be handled using state handlers. For each state type, there is a 
 
 `int $retries` - Number of retries if the action returns a result with ResultStatus:Fail.
 
-`?DateInterval $retryDelay` - the delay time between repetitions
+`?DateInterval $retryDelay` - The delay time between repetitions
 
 `array $labels` - Any arbitrary data. Can be useful when implementing state handlers.

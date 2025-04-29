@@ -4,7 +4,7 @@
 
 ### Общая схема работы
 
-<img src="/img/event-bus.svg" width="100%" alt="">
+<img src="https://github.com/duyler/docs/blob/main/img/event-bus.svg" width="100%" alt="">
 
 
 ### Типы состояний
