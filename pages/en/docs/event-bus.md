@@ -4,7 +4,7 @@ The event bus implements cooperative multitasking between the actions performed 
 
 ### General scheme of work
 
-<img src="https://duyler.com/assets/img/event-bus.svg" width="100%" alt="">
+<img src="/img/event-bus.svg" width="100%" alt="">
 
 
 ### Types of states
@@ -18,6 +18,7 @@ The event bus implements cooperative multitasking between the actions performed 
 * MainResume - occurs before control returns to action. If no handlers are defined for the state and a callback function was passed to `Fiber::suspend()`, it will be run and the callback function's return value will be summarized into the action context.
 * MainAfter - occurs after the action is completed
 * MainEmpty - occurs if task queue is empty
+* MainUnresolved - occurs if the task could not be allowed to execute
 * MainEnd - occurs when the task queue is empty and all actions are completed (only achievable in `Mode::Queue` mode)
 
 **States in the context of an action (within Fiber):**
@@ -49,7 +50,9 @@ Each state can be handled using state handlers. For each state type, there is a 
 
 `string|Closure|null $argumentFactory` - An anonymous function or invokable class for build the action argument.
 
-`?string $contract` - The return type of the action.
+`?string $type` - The return type of the action.
+
+`bool $immutable` - establishes the possibility of using mutable types of returned values.
 
 `string|Closure|null $rollback` - An anonymous function or invokable class that is called to roll back an action if an exception is thrown anywhere in the program.
 
@@ -69,6 +72,6 @@ Each state can be handled using state handlers. For each state type, there is a 
 
 `int $retries` - Number of retries if the action returns a result with ResultStatus:Fail.
 
-`array $labels` - Any arbitrary data. Can be useful when implementing state handlers.
+`?DateInterval $retryDelay` - the delay time between repetitions
 
-`bool $flush` - Flush action log after target action success complete.
+`array $labels` - Any arbitrary data. Can be useful when implementing state handlers.
